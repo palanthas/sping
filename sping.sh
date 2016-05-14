@@ -4,7 +4,7 @@
 #	Pings an IP address and plays a sonar sound if the IP is live.
 #	Now with functions!
 #
-#	Created by David Scholten(palanthas)	2016-01-27	Version: 1.0
+#	Created by David Scholten(palanthas)	2016-01-27	Version: 1.1
 
 #===============================
 #	Begin functions
@@ -16,7 +16,7 @@ sping ()
 	echo Pinging $ipaddr
 	while [ $i -lt 2 ]
 	do
-		ping -c 1 $ipaddr | grep "1 received"
+		ping -c 1 $ipaddr | grep -E ("1 received"|"bytes=")
 		found="$(echo $?)" 
 		if [ "$found" = "0" ]; then 
 			paplay sonar.wav
